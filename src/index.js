@@ -1,3 +1,3 @@
 import './js/app';
-import './css/style.css'
-import './components/popover/popover'
+import './components/popover/popover';
+import './components/popover/css/style.css';
