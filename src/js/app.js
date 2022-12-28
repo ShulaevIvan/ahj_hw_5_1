@@ -9,16 +9,13 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.forEach((item) => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
-            let check = popover.checkActive(e.target)
-            console.log(check)
+            let check = popover.checkActive(e.target);
             if (check) {
                 popover.removePopover(e.target)
             }
             else {
                 popover.createPopover(e.target);
             }
-
-            // createTooltip(e.target)
         })
     });
 })

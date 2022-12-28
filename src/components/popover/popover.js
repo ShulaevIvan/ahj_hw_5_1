@@ -5,7 +5,9 @@ export class Popover {
     }
 
     createPopover(targetEl) {
-        const popover_id = performance.now().toFixed()
+        const popoverTitleConent = targetEl.getAttribute('title');
+        const popoverBodyContent = targetEl.getAttribute('data-content');
+        const popover_id = performance.now().toFixed();
         const { left, top} = targetEl.getBoundingClientRect();
         this.popoverContainer = document.createElement('div');
         this.popoverHeader = document.createElement('h3');
@@ -14,10 +16,10 @@ export class Popover {
         this.popoverContainer.classList.add('popover');
         this.popoverHeader.classList.add('popover-header');
         this.popoverBody.classList.add('popover-body');
-        this.popoverArrow.classList.add('arrow')
+        this.popoverArrow.classList.add('arrow');
 
-        this.popoverHeader.textContent = 'Popover title';
-        this.popoverBody.textContent = 'And here s some amazing content. It s very engaging. Right?';
+        this.popoverHeader.textContent = popoverTitleConent
+        this.popoverBody.textContent = popoverBodyContent;
         this.popoverContainer.appendChild(this.popoverHeader);
         this.popoverContainer.appendChild(this.popoverBody);
         this.popoverContainer.appendChild(this.popoverArrow);
@@ -27,7 +29,7 @@ export class Popover {
         this.popoverContainer.setAttribute('popoverid', popover_id);
         this._allPopovers.push({
             id: popover_id,
-            tag: this.popoverContainer
+            tag: this.popoverContainer,
         });
         document.body.appendChild(this.popoverContainer);
     }
@@ -38,8 +40,8 @@ export class Popover {
 
     removePopover(btn) {
         let current = Array.from(document.querySelectorAll('.popover')).filter((item) => item.getAttribute('popoverid') == btn.getAttribute('btnid'));
-        current[0].classList.add('hide')
-        this._allPopovers.filter((item) => item.id != btn.getAttribute('btnid'));
+        current[0].remove();
+        this._allPopovers = this._allPopovers.filter((item) => item.id != btn.getAttribute('btnid'));
         btn.removeAttribute('btnid');
     }
 

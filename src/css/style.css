@@ -78,3 +78,6 @@
 .show {
     display: flex;
 }
+.btn-block {
+    margin: 0 10px;
+}
