@@ -23,7 +23,7 @@ describe('Page start', () => {
     await page.$('.popover') === null;
   });
 
-//   afterAll(async () => {
-//     await browser.close();
-//   });
+  afterAll(async () => {
+    await browser.close();
+  });
 });
